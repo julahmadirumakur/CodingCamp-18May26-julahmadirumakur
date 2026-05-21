@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <!-- Storage Warning -->
+    <div id="storage-warning">
+      ⚠️ LocalStorage tidak tersedia. Data tidak akan tersimpan secara permanen.
+    </div>
+
+    <!-- Top-right controls -->
+    <div class="top-controls">
+      <button id="theme-toggle" class="ctrl-btn" title="Ganti Tema">🌙</button>
+      <button id="settings-open" class="ctrl-btn" title="Pengaturan">⚙️</button>
+    </div>
+
+    <!-- ── GREETING CARD (full width) ── -->
+    <div class="container">
+      <div class="card greeting-card">
+        <div id="clock" class="clock">00:00:00</div>
+        <div id="date-display" class="date"></div>
+        <div id="greeting-text" class="greeting">Selamat Datang!</div>
+      </div>
+
+      <!-- ── BOTTOM ROW ── -->
+      <div class="bottom-row">
+
+        <!-- Left column: Timer + Quick Links -->
+        <div class="left-col">
+
+          <!-- Focus Timer -->
+          <div class="card">
+            <h2 class="card-title">Focus Timer</h2>
+            <div id="timer-display" class="timer-display">25:00</div>
+            <div class="timer-controls">
+              <button id="timer-start" class="btn btn-primary">Start</button>
+              <button id="timer-stop"  class="btn btn-secondary" disabled>Stop</button>
+              <button id="timer-reset" class="btn btn-secondary">Reset</button>
+            </div>
+            <p id="timer-status" class="timer-status"></p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="card">
+            <h2 class="card-title">Quick Links</h2>
+            <div class="links-form">
+              <input id="link-name" class="input" type="text" placeholder="Link name" autocomplete="off" />
+              <input id="link-url"  class="input" type="url"  placeholder="URL" autocomplete="off" />
+              <button id="link-add" class="btn btn-primary">Add Link</button>
+            </div>
+            <p id="link-error" class="error-msg" aria-live="polite"></p>
+            <div id="links-container" class="links-list"></div>
+          </div>
+
+        </div><!-- /left-col -->
+
+        <!-- Right column: Tasks -->
+        <div class="right-col">
+          <div class="card tasks-card">
+            <h2 class="card-title">Tasks</h2>
+
+            <div class="task-add">
+              <input id="todo-input" class="input" type="text"
+                     placeholder="Add a new task..." autocomplete="off" />
+              <button id="todo-add" class="btn btn-primary">Add</button>
+            </div>
+            <p id="todo-error" class="error-msg" aria-live="polite"></p>
+
+            <!-- Sort buttons -->
+            <div class="sort-row">
+              <button class="btn btn-sort active" data-sort="newest">Terbaru</button>
+              <button class="btn btn-sort" data-sort="oldest">Terlama</button>
+              <button class="btn btn-sort" data-sort="status">Status</button>
+            </div>
+
+            <ul id="todo-items" class="task-list"></ul>
+          </div>
+        </div><!-- /right-col -->
+
+      </div><!-- /bottom-row -->
+    </div><!-- /container -->
+
+    <!-- ── Settings Modal ── -->
+    <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" id="settings-backdrop"></div>
+      <div class="modal-box">
+        <h2 class="modal-title">⚙️ Pengaturan</h2>
+
+        <div class="form-group">
+          <label class="form-label" for="settings-name">Nama Kamu</label>
+          <input id="settings-name" class="input" type="text" placeholder="Masukkan nama…" />
+          <p id="settings-name-error" class="error-msg" aria-live="polite"></p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="settings-duration">Durasi Pomodoro (menit)</label>
+          <input id="settings-duration" class="input input-sm" type="number" min="1" max="120" placeholder="25" />
+          <p id="settings-duration-error" class="error-msg" aria-live="polite"></p>
+        </div>
+
+        <div class="modal-actions">
+          <button id="settings-save"  class="btn btn-primary">Simpan</button>
+          <button id="settings-close" class="btn btn-secondary">Tutup</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
